@@ -21,5 +21,6 @@
 
     <modules>
         <module>test</module>
+        <module>untitled-models</module>
     </modules>
 </project>
