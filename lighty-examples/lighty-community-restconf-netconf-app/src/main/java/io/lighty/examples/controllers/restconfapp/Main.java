@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.opendaylight.yang.gen.v1.http.openconfig.net.yang.aaa.rev191028.$YangModuleInfoImpl;
 import org.opendaylight.yangtools.yang.binding.YangModuleInfo;
+import org.opendaylight.yangtools.yang.model.api.Module;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,6 +112,10 @@ public class Main {
         LightyControllerBuilder lightyControllerBuilder = new LightyControllerBuilder();
         LightyController lightyController = lightyControllerBuilder.from(controllerConfiguration).build();
         lightyController.start().get();
+
+        final Set<Module> loadedModels = lightyController.getServices()
+                .getSchemaContextProvider().getSchemaContext().getModules();
+        LOG.info("Loaded models ({}): {}", loadedModels.size(), loadedModels);
 
         //2. start RestConf server
         CommunityRestConfBuilder communityRestConfBuilder = new CommunityRestConfBuilder();
