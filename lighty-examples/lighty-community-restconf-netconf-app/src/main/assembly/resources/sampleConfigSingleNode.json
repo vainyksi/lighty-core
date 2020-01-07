@@ -42,6 +42,7 @@
                 {"nameSpace":"urn:opendaylight:params:xml:ns:yang:controller:md:sal:clustering:prefix-shard-configuration","name":"prefix-shard-configuration","revision":"2017-01-10"},{"nameSpace":"urn:ietf:params:xml:ns:yang:iana-afn-safi","name":"iana-afn-safi","revision":"2013-07-04"},
                 {"nameSpace":"urn:opendaylight:params:xml:ns:yang:controller:config:distributed-datastore-provider","name":"distributed-datastore-provider","revision":"2014-06-12"},{"nameSpace":"urn:opendaylight:params:xml:ns:yang:controller:md:sal:cluster:admin","name":"cluster-admin","revision":"2015-10-13"},
                 {"nameSpace":"urn:ietf:params:xml:ns:yang:ietf-lisp-address-types","name":"ietf-lisp-address-types","revision":"2015-11-05"},
+                {"nameSpace": "http://openconfig.net/yang/aaa", "name": "openconfig-aaa", "revision": "2019-10-28"},
                 {"nameSpace":"urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring-extension","name":"ietf-netconf-monitoring-extension","revision":"2013-12-10"}
             ]
         }
