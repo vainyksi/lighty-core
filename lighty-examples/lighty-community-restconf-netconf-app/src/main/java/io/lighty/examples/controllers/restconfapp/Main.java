@@ -32,7 +32,6 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.opendaylight.yang.gen.v1.http.openconfig.net.yang.aaa.rev191028.$YangModuleInfoImpl;
 import org.opendaylight.yangtools.yang.binding.YangModuleInfo;
 import org.opendaylight.yangtools.yang.model.api.Module;
 import org.slf4j.Logger;
@@ -77,8 +76,8 @@ public class Main {
                 LOG.info("using default configuration ...");
                 Set<YangModuleInfo> modelPaths = Stream.concat(RestConfConfigUtils.YANG_MODELS.stream(),
                         NetconfConfigUtils.NETCONF_TOPOLOGY_MODELS.stream()).collect(Collectors.toSet());
-                modelPaths = Stream.concat(modelPaths.stream(), Stream.of($YangModuleInfoImpl.getInstance()))
-                        .collect(Collectors.toSet());
+//                modelPaths = Stream.concat(modelPaths.stream(), Stream.of($YangModuleInfoImpl.getInstance()))
+//                        .collect(Collectors.toSet());
                 ArrayNode arrayNode = YangModuleUtils
                         .generateJSONModelSetConfiguration(
                                 Stream.concat(ControllerConfigUtils.YANG_MODELS.stream(), modelPaths.stream())

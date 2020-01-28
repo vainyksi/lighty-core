@@ -93,11 +93,11 @@
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.lighty.kit.examples.controllers.models</groupId>
-            <artifactId>untitled-models</artifactId>
-            <version>11.0.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.lighty.kit.examples.controllers.models</groupId>-->
+<!--            <artifactId>untitled-models</artifactId>-->
+<!--            <version>11.0.1</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>

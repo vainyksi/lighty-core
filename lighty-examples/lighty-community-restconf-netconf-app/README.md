@@ -51,6 +51,18 @@ There are two separated config files: for NETCONF SBP single node and for cluste
 
 Example configuration for single node is [here](src/main/assembly/resources/sampleConfigSingleNode.json)
 
+### Use custom models loaded in run-time
+
+Run light.io app through main class and manually specify classpath
+```
+java -cp <MODELS_JAR_PATH>:<APP_JAR_PATH>:<LIBS_PATH> io.lighty.examples.controllers.restconfapp.Main sampleConfigSingleNode.json
+```
+
+example:
+```
+java -cp <DIR_PATH_TO_MODELS_JAR>/untitled-models-11.0.1.jar:lighty-community-restconf-netconf-app-11.1.0.jar:lib/* io.lighty.examples.controllers.restconfapp.Main sampleConfigSingleNode.json
+```
+
 ## Setup Logging
 Default loging configuration may be overwritten by JVM option
 ```-Dlog4j.configuration=/path/to/log4j.properties```
