@@ -16,10 +16,16 @@ import io.lighty.core.controller.impl.config.ConfigurationException;
 import io.lighty.core.controller.impl.util.ControllerConfigUtils;
 import io.lighty.core.controller.spring.LightyCoreSpringConfiguration;
 import io.lighty.core.controller.spring.LightyLaunchException;
+import io.lighty.modules.northbound.restconf.community.impl.CommunityRestConf;
+import io.lighty.modules.northbound.restconf.community.impl.CommunityRestConfBuilder;
+import io.lighty.modules.northbound.restconf.community.impl.config.RestConfConfiguration;
+import io.lighty.modules.northbound.restconf.community.impl.util.RestConfConfigUtils;
 import io.lighty.modules.southbound.netconf.impl.NetconfSBPlugin;
 import io.lighty.modules.southbound.netconf.impl.NetconfTopologyPluginBuilder;
 import io.lighty.modules.southbound.netconf.impl.config.NetconfConfiguration;
 import io.lighty.modules.southbound.netconf.impl.util.NetconfConfigUtils;
+import io.lighty.server.LightyServerBuilder;
+import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -67,6 +73,27 @@ public class LightyConfiguration extends LightyCoreSpringConfiguration {
         }
     }
 
+    @Bean
+    CommunityRestConf initRestconf(LightyController lightyController) throws ExecutionException, InterruptedException {
+        //2. get RESTCONF NBP configuration
+        RestConfConfiguration restConfConfiguration = RestConfConfigUtils.getDefaultRestConfConfiguration();
+
+        //2. start RestConf server
+        LightyServerBuilder jettyServerBuilder = new LightyServerBuilder(new InetSocketAddress(
+                restConfConfiguration.getInetAddress(), restConfConfiguration.getHttpPort()));
+
+        final CommunityRestConf restConf = CommunityRestConfBuilder.from(RestConfConfigUtils
+                .getRestConfConfiguration(restConfConfiguration, lightyController.getServices()))
+                .withLightyServer(jettyServerBuilder)
+                .build();
+
+        restConf.start().get();
+        restConf.startServer();
+
+        Runtime.getRuntime().addShutdownHook(new LightyModuleShutdownHook(restConf));
+
+        return restConf;
+    }
 
     @Bean
     NetconfSBPlugin initNetconfSBP(LightyController lightyController)
