@@ -10,7 +10,6 @@ package io.lighty.core.controller.springboot.rest;
 
 import io.lighty.core.controller.springboot.rest.dto.NetconfDeviceRequest;
 import io.lighty.core.controller.springboot.rest.dto.NetconfDeviceResponse;
-import io.lighty.core.controller.springboot.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +44,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,10 +71,8 @@ public class NetconfDeviceRestService {
     @Autowired
     private MountPointService mountPointService;
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(path = "/list")
-    public ResponseEntity getNetconfDevicesIds(Authentication authentication) throws InterruptedException, ExecutionException, TimeoutException {
-        Utils.logUserData(LOG, authentication);
+    public ResponseEntity getNetconfDevicesIds() throws InterruptedException, ExecutionException, TimeoutException {
         try (final ReadTransaction tx = dataBroker.newReadOnlyTransaction()) {
             final Optional<Topology> netconfTopoOptional =
                 tx.read(LogicalDatastoreType.OPERATIONAL, NETCONF_TOPOLOGY_IID).get(TIMEOUT, TimeUnit.SECONDS);
@@ -116,12 +111,10 @@ public class NetconfDeviceRestService {
         }
     }
 
-    @Secured({"ROLE_ADMIN"})
     @PutMapping(path = "/id/{netconfDeviceId}")
     public ResponseEntity connectNetconfDevice(@PathVariable final String netconfDeviceId,
-                                               @RequestBody final NetconfDeviceRequest deviceInfo, Authentication authentication)
+                                               @RequestBody final NetconfDeviceRequest deviceInfo)
         throws InterruptedException, ExecutionException, TimeoutException {
-        Utils.logUserData(LOG, authentication);
         final WriteTransaction tx = dataBroker.newWriteOnlyTransaction();
         final NodeId nodeId = new NodeId(netconfDeviceId);
         final InstanceIdentifier<Node> netconfDeviceIID = NETCONF_TOPOLOGY_IID
@@ -146,11 +139,9 @@ public class NetconfDeviceRestService {
         return ResponseEntity.ok().build();
     }
 
-    @Secured({"ROLE_ADMIN"})
     @DeleteMapping(path = "/id/{netconfDeviceId}")
-    public ResponseEntity disconnectNetconfDevice(@PathVariable final String netconfDeviceId, Authentication authentication)
+    public ResponseEntity disconnectNetconfDevice(@PathVariable final String netconfDeviceId)
         throws InterruptedException, ExecutionException, TimeoutException {
-        Utils.logUserData(LOG, authentication);
         final WriteTransaction tx = dataBroker.newWriteOnlyTransaction();
         final NodeId nodeId = new NodeId(netconfDeviceId);
         final InstanceIdentifier<Node> netconfDeviceIID = NETCONF_TOPOLOGY_IID

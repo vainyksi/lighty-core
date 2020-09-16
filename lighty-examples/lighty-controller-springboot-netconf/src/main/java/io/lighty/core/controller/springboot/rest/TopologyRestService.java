@@ -8,7 +8,13 @@
 
 package io.lighty.core.controller.springboot.rest;
 
-import io.lighty.core.controller.springboot.utils.Utils;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 import org.opendaylight.mdsal.binding.api.DataBroker;
 import org.opendaylight.mdsal.binding.api.ReadTransaction;
 import org.opendaylight.mdsal.binding.api.WriteTransaction;
@@ -24,22 +30,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/services/data/topology")
@@ -52,12 +48,9 @@ public class TopologyRestService {
     @Qualifier("BindingDataBroker")
     private DataBroker databroker;
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/list")
-    public ResponseEntity getAllTopologyIdsOperational(Authentication authentication)
+    public ResponseEntity getAllTopologyIdsOperational()
             throws InterruptedException, ExecutionException, TimeoutException {
-        Utils.logUserData(LOG, authentication);
-
         try (final ReadTransaction tx = databroker.newReadOnlyTransaction()) {
             final InstanceIdentifier<NetworkTopology> iid =
                     InstanceIdentifier.create(NetworkTopology.class);
@@ -75,11 +68,9 @@ public class TopologyRestService {
         }
     }
 
-    @Secured({"ROLE_ADMIN"})
     @PutMapping("/id/{topologyId}")
-    public ResponseEntity putTopologyOperational(@PathVariable final String topologyId, Authentication authentication)
+    public ResponseEntity putTopologyOperational(@PathVariable final String topologyId)
             throws InterruptedException {
-        Utils.logUserData(LOG, authentication);
 
         final WriteTransaction tx = databroker.newWriteOnlyTransaction();
 
@@ -101,11 +92,9 @@ public class TopologyRestService {
         }
     }
 
-    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/id/{topologyId}")
-    public ResponseEntity deleteTopologyOperational(@PathVariable final String topologyId, Authentication authentication)
+    public ResponseEntity deleteTopologyOperational(@PathVariable final String topologyId)
             throws InterruptedException {
-        Utils.logUserData(LOG, authentication);
 
         final WriteTransaction tx = databroker.newWriteOnlyTransaction();
 
