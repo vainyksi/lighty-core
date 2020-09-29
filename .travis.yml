@@ -29,6 +29,7 @@ addons:
     token:
       secure: ${SONAR_SECRET}
 
+
 # splitting the build into install and test parts gives us a quicker way
 # to identify what went wrong
 script:
