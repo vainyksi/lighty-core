@@ -23,11 +23,11 @@ install:
   - mvn install -DskipTests=true -B -V -Psource-quality
 
 # addons are executed between install and script
-addons:
-  sonarcloud:
-    organization: "pantheon-tech"
-    token:
-      secure: "${SONAR_SECRET}"
+#addons:
+#  sonarcloud:
+#    organization: "pantheon-tech"
+#    token:
+#      secure: "${SONAR_SECRET}"
 
 # splitting the build into install and test parts gives us a quicker way
 # to identify what went wrong
