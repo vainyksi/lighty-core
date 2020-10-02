@@ -23,11 +23,11 @@ install:
   - mvn install -DskipTests=true -B -V -Psource-quality
 
 # addons are executed between install and script
-#addons:
-#  sonarcloud:
-#    organization: "pantheon-tech"
-#    token:
-#      secure: "${SONAR_SECRET}"
+addons:
+  sonarcloud:
+    organization: "pantheon-tech"
+    token:
+      secure: "CfWzYYn1lHAdMf8zScJ2nFu/SKN8TqHk35eo8+bGyHYbxoUTyrtn30Gb8sNgtx8tLQh8iT15xmkN8Y1iZPYJ4MjGo1IvZD1L6k9KbYePjigbiJWP+wYt8wi0Pg5Nbiximo1ooIKw2yij3bUyVaoMt25K6ciOA2ARDpTEBvgZLuhfY57+v9iLRKHB41yznKdBolXPmnQtrcDTdjDBWxEE8prlAuo55gHddb2mkhrCvgR2xS7dNP7Cm1oau9fc5/2gJBCE7Qe3oVoo5t2VZTNq7L8nYLRnf5AiU+DpbrczFwVxInDyXik1l1kH0vp9aTkI11TIm/xi/1shuUwHgqHlk/iCzssFkpJPlw6Wljm+9jWHvh3tCtjr6v8MVBC0zKt8zH90xCA5WfNEk9wY4OPoYkuk03vsD/h1eJGJWvCiBzg9FjAMa0PjspaOMZvIf14w3URRSMZEq3gvFHIuqqZNDpVRr8d5Wemhu7Q/bXPetp9zdARKZ9nVKxl1MXR/BLwvfjLHgP3tWCcuMnVgww1XMvb0GyzcexO9IXYD/4extW6orQUWwZYvkBm5FUKdSgUqfxarBJz+MSHBtXWA/GaGFMdXqsDLdQrfUq4DHQDW7NK522jRaAlghr+kuDSmtrLq7OUBjro1qXZ7/xNWZCOnUIJX99rxupwK57chahKxwug="
 
 # splitting the build into install and test parts gives us a quicker way
 # to identify what went wrong
