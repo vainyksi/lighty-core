@@ -37,7 +37,7 @@ script:
   - echo ${SONAR_SECRET}
   - echo "${SONAR_SECRET}"
   - mvn verify -B
-  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn sonar:sonar -Dsonar.projectKey="${SONAR_KEY}" -Dsonar.host.url=https://sonarcloud.io; fi
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn sonar:sonar -Dsonar.projectKey="${SONAR_KEY}" -Dsonar.organization=vainyksi -Dsonar.host.url=https://sonarcloud.io; fi
 
 # before_cache happens before the second part of the cache phase,
 # which happens after script
