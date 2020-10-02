@@ -33,7 +33,9 @@ addons:
 # to identify what went wrong
 script:
   - echo ${SONAR_KEY}
+  - echo "${SONAR_KEY}"
   - echo ${SONAR_SECRET}
+  - echo "${SONAR_SECRET}"
   - mvn verify -B
   - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn sonar:sonar -Dsonar.projectKey="${SONAR_KEY}" -Dsonar.host.url=https://sonarcloud.io; fi
 
