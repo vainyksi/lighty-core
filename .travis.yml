@@ -27,13 +27,13 @@ addons:
   sonarcloud:
     organization: "pantheon-tech"
     token:
-      secure: ${SONAR_SECRET}
+      secure: "${SONAR_SECRET}"
 
 # splitting the build into install and test parts gives us a quicker way
 # to identify what went wrong
 script:
   - mvn verify -B
-  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn sonar:sonar -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=https://sonarcloud.io; fi
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then mvn sonar:sonar -Dsonar.projectKey="${SONAR_KEY}" -Dsonar.host.url=https://sonarcloud.io; fi
 
 # before_cache happens before the second part of the cache phase,
 # which happens after script
