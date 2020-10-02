@@ -18,6 +18,9 @@
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.install.skip>true</maven.install.skip>
+        <sonar.projectKey>vainyksi_lighty-core</sonar.projectKey>
+        <sonar.organization>vainyksi</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <modules>
