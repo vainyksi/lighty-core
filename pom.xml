@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
+
     <groupId>io.lighty</groupId>
     <artifactId>lighty-aggregator</artifactId>
     <version>13.2.2-SNAPSHOT</version>
