@@ -57,7 +57,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Env docker image name
         run: |
-          DOCKER_IMAGE_NAME=$(echo ghcr.io/pantheontech/${{ github.event.inputs.image-name }})
+          DOCKER_IMAGE_NAME=$(echo ghcr.io/vainyksi/${{ github.event.inputs.image-name }})
           DOCKER_IMAGE_NAME_TAG=$(echo $DOCKER_IMAGE_NAME:${{ github.event.inputs.image-tag }})
           echo "DOCKER_IMAGE_NAME=$(echo $DOCKER_IMAGE_NAME)" >> $GITHUB_ENV
           echo "DOCKER_IMAGE_NAME_TAG=$(echo $DOCKER_IMAGE_NAME_TAG)" >> $GITHUB_ENV
