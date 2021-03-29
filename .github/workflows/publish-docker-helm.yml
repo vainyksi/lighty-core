@@ -30,7 +30,7 @@ jobs:
         shell: bash
     env:
       app-aggregator-dir: lighty-applications/${{ github.event.inputs.app-name }}-aggregator
-      PUBLISH_ACCESS_KEY: ${{ secrets.MM_PKG_WRITE}}
+      PUBLISH_ACCESS_KEY: ${{ secrets.GITHUB_TOKEN }}
     name: "Publish docker image and helm chart. App: ${{ github.event.inputs.app-name }}, Checkout-ref: ${{ github.event.inputs.checkout-ref }}"
     steps:
       - name: Clone Repository
