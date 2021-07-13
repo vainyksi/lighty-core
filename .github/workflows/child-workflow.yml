@@ -1,0 +1,21 @@
+name: Child Workflow
+
+on:
+  # Automatic trigger when pushing tags
+  # push:
+  #   branches:
+  #     - "!*"
+  #   tags:
+  #     - 'v*'
+
+  # Manual trigger from the UI
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Custom Build description'
+
+  # Dependency to a forking workflow
+  workflow_run:
+    workflows: ["Parent Workflow"]
+    types:
+      - complete
