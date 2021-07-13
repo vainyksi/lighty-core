@@ -1,0 +1,10 @@
+name: Parent Workflow
+on:
+  workflow_dispatch
+
+jobs:
+  say_hi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hi
+        run: echo "Hi"
