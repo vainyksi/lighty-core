@@ -19,3 +19,10 @@ on:
     workflows: ["Parent Workflow"]
     types:
       - complete
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello
+        run: echo "Hello"
