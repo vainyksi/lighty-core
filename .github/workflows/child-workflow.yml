@@ -19,6 +19,9 @@ on:
     workflows: ["Parent Workflow"]
     types:
       - completed
+      
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   say_hello:
