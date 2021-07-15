@@ -1,4 +1,4 @@
-# lighty.io gNMI/RESTCONF application
+# lighty.io gNMI / RESTCONF use-case example
 This application provides gNMI south-bound utilized with RESTCONF interface to manage gNMI devices on the network.
 Application works as standalone SDN controller. It is capable to connect to gNMI devices and expose connected devices
 over RESTCONF north-bound APIs. In this application gNMI simulator starts as gNMI target and all operations performs
@@ -16,11 +16,68 @@ This application starts:
 * [lighty.io gNMI](https://github.com/PANTHEONtech/lighty/tree/master/lighty-modules/lighty-gnmi/lighty-gnmi-sb)
 * [lighty.io gNMI device simulator](https://github.com/PANTHEONtech/lighty/tree/14.0.x/lighty-modules/lighty-gnmi/lighty-gnmi-device-simulator)
 
+// FIXME: the architecture image - lighty, gnmi-plugin, gnmi-device, RESTCONF
+
 ## Prerequisites
-In order to build and start and use the lighty.io gNMI/RESTCONF application locally, you need:
+In order to build, start and use the lighty.io gNMI/RESTCONF application locally, you need:
 * Java 11 or later
 * Maven 3.5.4 or later
 * Postman v7.36.5. or later
+* Linux-based system with bash
+
+## How to run use-case
+// FIXME:
+bash code-snippet, how to build the RCgNMI app & simulator device, where to find it, ... few words about it
+
+root directory of this gnmi example/use-case should contain:
+- README
+- controller configuration
+- simulator configuration
+- yang models
+
+### Start RCgNMI controller app
+// FIXME:
+bash code-snippet how to run (extract & run jar with specific config)
+
+### Start testing gNMI device
+// FIXME:
+bash code-snippet how to run (extract & run jar with specific config - models, certs)
+
+### Connect simulator to controller
+// FIXME:
+curl request-snippet
+
+### Read configuration from device
+// FIXME:
+curl request-snippet
+
+### Write configuration to device
+// FIXME:
+curl request-snippet
+
+### Update configuration on device
+// FIXME:
+curl request-snippet
+
+### Delete configuration from device
+// FIXME:
+curl request-snippet
+
+### Disconnect the device from controller
+// FIXME:
+curl request-snippet
+
+
+
+
+
+
+
+
+--------------------------------------------
+
+
+
 
 ## Build and start
 To build and start the lighty.io gNMI/RESTCONF application in your local environment, follow these steps:
